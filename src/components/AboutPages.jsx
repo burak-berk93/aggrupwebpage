@@ -2,9 +2,9 @@ import { Container, Typography, Box, Grid, Card, CardContent, CardMedia } from "
 import BusinessIcon from "@mui/icons-material/Business";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import aboutImage from '../assets/images/hakkimizda.jpg'
 
-// Örnek görsel (public klasöründe olmalı)
-const aboutImage = "/src/assets/images/hakkimizda.jpg";  
+
 
 function About() {
   return (
