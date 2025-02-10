@@ -7,6 +7,7 @@ import "./App.css";
 import Box from "@mui/material/Box";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           
           <Route path="/" element={<Home />} />
           <Route path="/Product" element={<Product />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </Box>
       </Box>
