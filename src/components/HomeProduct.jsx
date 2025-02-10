@@ -69,6 +69,8 @@ function CardList({ scrollPosition }) {
         }}
       >
         <motion.div
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }} // Hover animasyonu
+          whileTap={{ scale: 0.98 }} // Tıklama animasyonu
           initial={{ opacity: 0, y: 100 }} // Başlangıçta sayfanın altından gelir
           animate={{
             opacity: scrollPosition > 100 ? 1 : 0, // Scroll 100px yukarı kayarsa görünür olur
@@ -108,6 +110,8 @@ function CardList({ scrollPosition }) {
         }}
       >
         <motion.div
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }} // Hover animasyonu
+          whileTap={{ scale: 0.98 }} // Tıklama animasyonu
           initial={{ opacity: 0, y: 100 }} // Başlangıçta sayfanın altından gelir
           animate={{
             opacity: scrollPosition > 100 ? 1 : 0, // Scroll 100px yukarı kayarsa görünür olur
@@ -147,6 +151,8 @@ function CardList({ scrollPosition }) {
         }}
       >
            <motion.div
+             whileHover={{ scale: 1.05, transition: { duration: 0.3 } }} // Hover animasyonu
+             whileTap={{ scale: 0.98 }} // Tıklama animasyonu
           initial={{ opacity: 0, y: 100 }} // Başlangıçta sayfanın altından gelir
           animate={{
             opacity: scrollPosition > 100 ? 1 : 0, // Scroll 100px yukarı kayarsa görünür olur

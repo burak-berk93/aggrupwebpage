@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { red, grey } from "@mui/material/colors"; // Material UI renk paletinden kırmızı rengi import ediyoruz
+import { Link } from "react-router-dom"; // React Router'dan Link import edildi
+import { red, grey } from "@mui/material/colors";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,10 +13,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import logo from "../assets/images/aggrup-logo.svg"; // Logonun resmi import ediliyor
-import TextField from '@mui/material/TextField';
-
-
+import logo from "../assets/images/aggrup-logo.svg";
+import TextField from "@mui/material/TextField";
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -25,16 +24,16 @@ function Header() {
   };
 
   const menuItems = [
-    "Ana Sayfa",
-    "Ürünler",
-    "Hakkımızda",
-    "Tekli Al",
-    "İletişim",
+    { name: "Ana Sayfa", path: "/" },
+    { name: "Ürünler", path: "/Product" },
+    { name: "Hakkımızda", path: "/about" },
+    { name: "Tekli Al", path: "/single-buy" },
+    { name: "İletişim", path: "/contact" },
   ];
 
   return (
     <>
-      <AppBar position="static" sx={{  background:"white", color: grey[800], }}>
+      <AppBar position="static" sx={{ background: "white", color: grey[800] }}>
         <Container maxWidth="lg">
           <Toolbar>
             {/* Mobil menü butonu */}
@@ -50,29 +49,25 @@ function Header() {
 
             <Grid container spacing={2}>
               <Grid item xs={3}>
-              <Box sx={{ paddingTop: 2, display: 'flex', justifyContent: 'flex-start' }}>
-                <img src={logo} alt="Logo"  height="50" />
-                
-               
+                <Box sx={{ paddingTop: 2, display: "flex", justifyContent: "flex-start" }}>
+                  <img src={logo} alt="Logo" height="50" />
                 </Box>
               </Grid>
 
               {/* Masaüstü için menü */}
               <Grid item xs={6}>
-                <Box sx={{ display: { xs: "none", md: "flex" }, padding: 2 , fontSize: "38px"}}>
+                <Box sx={{ display: { xs: "none", md: "flex" }, padding: 2 }}>
                   {menuItems.map((item) => (
-                    <Button key={item} color="inherit">
-                      {item}
+                    <Button key={item.path} color="inherit" component={Link} to={item.path}>
+                      {item.name}
                     </Button>
                   ))}
                 </Box>
               </Grid>
 
-              <Grid item xs={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+              <Grid item xs={3} sx={{ display: { xs: "none", md: "block" } }}>
                 <Box sx={{ padding: 2 }}>
-                <TextField fullWidth label="Ürün Ara" id="outlined-size-small" size="small"/>
-
-
+                  <TextField fullWidth label="Ürün Ara" id="outlined-size-small" size="small" />
                 </Box>
               </Grid>
             </Grid>
@@ -87,16 +82,16 @@ function Header() {
         onClose={handleDrawerToggle}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "100vw", // Tam ekran Drawer
-            backgroundColor: red[500], // Kırmızı arka plan
-            color: "white", // Yazı rengi beyaz
+            width: "100vw",
+            backgroundColor: grey[800],
+            color: "white",
           },
         }}
       >
         <List>
           {menuItems.map((item) => (
-            <ListItem button key={item} onClick={handleDrawerToggle}>
-              <ListItemText primary={item} />
+            <ListItem button key={item.path} onClick={handleDrawerToggle} component={Link} to={item.path}>
+              <ListItemText primary={item.name} />
             </ListItem>
           ))}
         </List>
@@ -106,6 +101,3 @@ function Header() {
 }
 
 export default Header;
-
-
-

@@ -1,18 +1,17 @@
 import Container from "@mui/material/Container";
-import { orange, lightBlue, purple, grey } from "@mui/material/colors";
+import {  grey } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import useTheme from "@mui/material/styles/useTheme";
-import images1 from "../assets/images/Insaat-Malzemeleri.png";
-import images2 from "../assets/images/Yapi-Malzemeleri.png";
+
+
 import images3 from "../assets/images/El-Aletleri-ve-Makinalar.png";
 
 function HomeProduct() {
-  const theme = useTheme();
+
 
   return (
     <Box sx={{ padding: "20px" }}>
