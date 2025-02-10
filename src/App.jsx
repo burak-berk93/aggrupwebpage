@@ -4,8 +4,10 @@ import './App.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Banner from './components/Banner';
+import Reference from './components/Reference';
 import FavoriteProducts from './components/FavoriteProducts'
 import HomeProduct from './components/HomeProduct';
+import Maps from './components/Maps';
 import Box from "@mui/material/Box";
 
 
@@ -28,6 +30,8 @@ function App() {
       <Banner />
       <HomeProduct />
       <FavoriteProducts/>
+      <Reference/>
+      <Maps/>
       <Footer />
       
     </Box>
