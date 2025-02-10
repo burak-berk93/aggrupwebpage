@@ -14,7 +14,7 @@ function About() {
         sx={{
           position: "relative",
           width: "100%",
-          height: "400px",
+          height: "401px",
           backgroundImage: `url(${aboutImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
