@@ -82,7 +82,9 @@ function CardList() {
         </CardContent>
         <CardMedia component="img" height="240" image={images3} alt="Resim 3" />
       </Card>
+      
     </Box>
+    
   );
 }
 
