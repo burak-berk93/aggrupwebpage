@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Grid, Card, CardContent, CardMedia } from "@mui/material";
+import { Container, Typography, Box, Grid, Card, CardContent } from "@mui/material";
 import BusinessIcon from "@mui/icons-material/Business";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";

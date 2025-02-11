@@ -1,5 +1,5 @@
 import React from "react";
-import ProductPage from "../components/Product";
+import ProductPage from "../components/ProductPage";
 import ProductSlider from "../components/ProductSlider";
 import Footer from '../components/Footer';
 
