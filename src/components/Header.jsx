@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"; // React Router'dan Link import edildi
-import { red, grey } from "@mui/material/colors";
+import {  grey } from "@mui/material/colors";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -27,7 +27,7 @@ function Header() {
     { name: "Ana Sayfa", path: "/" },
     { name: "Ürünler", path: "/Product" },
     { name: "Hakkımızda", path: "/about" },
-    { name: "Tekli Al", path: "/single-buy" },
+    { name: "Tekli Al", path: "/Order" },
     { name: "İletişim", path: "/contact" },
   ];
 
