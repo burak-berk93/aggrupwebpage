@@ -1,5 +1,8 @@
 import React from "react";
-import { Box, Container, Typography, Stack, IconButton, Link } from "@mui/material";
+import { Box, Container, Typography, Stack, IconButton, Link as MuiLink } from "@mui/material"; 
+import { Link } from "react-router-dom"; // React Router'dan Link import edildi
+import logo from "../assets/images/aggrup-logo-white.svg";
+
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa"; // react-icons'dan sosyal medya ikonları
 
 function Footer() {
@@ -15,7 +18,9 @@ function Footer() {
           {/* 1. Bölüm - Logo */}
           <Box>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-              My Website
+            <Box sx={{ paddingTop: 2, display: "flex", justifyContent: "flex-start" }}>
+                  <img src={logo} alt="Logo" height="50" />
+                </Box>
             </Typography>
           </Box>
 
@@ -23,10 +28,10 @@ function Footer() {
           <Box>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>Sayfalar</Typography>
             <Stack spacing={1}>
-              <Link href="/" color="inherit" underline="none">Ana Sayfa</Link>
-              <Link href="/about" color="inherit" underline="none">Hakkımızda</Link>
-              <Link href="/services" color="inherit" underline="none">Hizmetler</Link>
-              <Link href="/contact" color="inherit" underline="none">İletişim</Link>
+              <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Ana Sayfa</Link>
+              <Link to="/Product" style={{ color: "inherit", textDecoration: "none" }}>Ürünler</Link>
+              <Link to="/About" style={{ color: "inherit", textDecoration: "none" }}>Hakkımızda</Link>
+              <Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>İletişim</Link>
             </Stack>
           </Box>
 
@@ -42,16 +47,16 @@ function Footer() {
           <Box>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>Sosyal Medya</Typography>
             <Stack direction="row" spacing={2} justifyContent="center">
-              <IconButton href="https://facebook.com" target="_blank" color="inherit">
+              <IconButton component={MuiLink} href="https://facebook.com" target="_blank" color="inherit">
                 <FaFacebookF size={20} />
               </IconButton>
-              <IconButton href="https://twitter.com" target="_blank" color="inherit">
+              <IconButton component={MuiLink} href="https://twitter.com" target="_blank" color="inherit">
                 <FaTwitter size={20} />
               </IconButton>
-              <IconButton href="https://instagram.com" target="_blank" color="inherit">
+              <IconButton component={MuiLink} href="https://instagram.com" target="_blank" color="inherit">
                 <FaInstagram size={20} />
               </IconButton>
-              <IconButton href="https://linkedin.com" target="_blank" color="inherit">
+              <IconButton component={MuiLink} href="https://linkedin.com" target="_blank" color="inherit">
                 <FaLinkedinIn size={20} />
               </IconButton>
             </Stack>
@@ -61,7 +66,7 @@ function Footer() {
         {/* Alt Kısım - Telif Hakkı */}
         <Box sx={{ mt: 3, textAlign: 'center' }}>
           <Typography variant="body2" sx={{ color: 'gray' }}>
-            © {new Date().getFullYear()} My Website. All Rights Reserved.
+            © {new Date().getFullYear()} Canboss Yazılım. All Rights Reserved.
           </Typography>
         </Box>
       </Container>
