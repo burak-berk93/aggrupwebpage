@@ -2,6 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom"; // React Router'dan useNavigate import edildi
 
 import images1 from "../assets/images/Tugla.png";
 import images2 from "../assets/images/Cimento.png";
@@ -52,6 +53,8 @@ const favoriteProducts = [
 ];
 
 function FavoriteProductsSlider() {
+  const navigate = useNavigate(); // useNavigate hook'u kullanıldı
+
   return (
     <Box sx={{ padding: 4, bgcolor: "#f5f5f5" }}>
       <Typography
@@ -99,9 +102,10 @@ function FavoriteProductsSlider() {
 
   <Button
     variant="contained"
+    onClick={() => navigate("/Product")}
     color="primary"
     sx={{ mt: 2, color: "#fff" }}
-    onClick={() => alert(`Ürün: ${product.title}`)}
+
   >
     Detayları Gör
   </Button>

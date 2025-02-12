@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import images1 from "../assets/images/Insaat-Malzemeleri.png";
 import images2 from "../assets/images/Yapi-Malzemeleri.png";
 import images3 from "../assets/images/El-Aletleri-ve-Makinalar.png";
+import { useNavigate } from "react-router-dom"; // React Router'dan useNavigate import edildi
+import { Button } from "@mui/material";
 
 function HomeProduct() {
   const theme = useTheme();
@@ -49,6 +51,8 @@ function HomeProduct() {
 }
 
 function CardList({ scrollPosition }) {
+  const navigate = useNavigate(); // useNavigate hook'u kullanıldı
+
   return (
     <Box
       sx={{
@@ -61,7 +65,8 @@ function CardList({ scrollPosition }) {
     >
       {/* Kart 1 */}
 
-      <Card
+      <Button
+          onClick={() => navigate("/Product")}
         sx={{
           width: { xs: "100%", md: "30%" },
           borderRadius: 2,
@@ -98,11 +103,13 @@ function CardList({ scrollPosition }) {
             alt="Resim 1"
           />
         </motion.div>
-      </Card>
+      </Button>
 
       {/* Kart 2 */}
 
-      <Card
+      <Button
+                onClick={() => navigate("/Product")}
+
         sx={{
           width: { xs: "100%", md: "30%" },
           borderRadius: 2,
@@ -139,11 +146,13 @@ function CardList({ scrollPosition }) {
             alt="Resim 2"
           />
         </motion.div>
-      </Card>
+      </Button>
 
       {/* Kart 3 */}
 
-      <Card
+      <Button
+                      onClick={() => navigate("/Product")}
+
         sx={{
           width: { xs: "100%", md: "30%" },
           borderRadius: 2,
@@ -175,12 +184,12 @@ function CardList({ scrollPosition }) {
           </CardContent>
           <CardMedia
             component="img"
-            height="240"
+            height="200"
             image={images3}
             alt="Resim 3"
           />
         </motion.div>
-      </Card>
+      </Button>
     </Box>
   );
 }

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom"; // React Router'dan useNavigate import edildi
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { motion } from "framer-motion"; // framer-motion'u dahil ediyoruz
 
 import {
   Box,
@@ -26,6 +29,7 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const productsData = [
@@ -73,6 +77,7 @@ const productsData = [
 
 // Redux actionları
 const ADD_TO_CART = "ADD_TO_CART";
+const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART"; // Yeni silme işlemi ekleyelim.
 const TOGGLE_CATEGORY = "TOGGLE_CATEGORY";
 const CHANGE_SEARCH = "CHANGE_SEARCH";
@@ -115,7 +120,9 @@ const ProductPage = () => {
   const removeFromCart = (productId) => {
     dispatch({ type: REMOVE_FROM_CART, payload: productId });
   };
-
+  const increaseFromCart = (productId) => {
+    dispatch({ type: INCREMENT_QUANTITY, payload: productId });
+  };
   const handleSearchChange = (e) => {
     dispatch({ type: CHANGE_SEARCH, payload: e.target.value });
   };
@@ -131,24 +138,73 @@ const ProductPage = () => {
   return (
     <Container>
       {/* Sepet Butonu */}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <IconButton color="primary" onClick={() => setCartOpen(true)}>
+      <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
+        position: "fixed", // Sabit pozisyon
+        bottom: 16, // Alt kısımda 16px mesafe
+        right: 16, // Sağdan 16px mesafe
+        zIndex: 1000, // Diğer öğelerin üstünde görünmesi için
+        mt: 2,
+      }}
+    >
+      <motion.div
+        animate={{
+          y: cart.reduce((sum, item) => sum + item.quantity, 0) > 0 ? [-10, 0, -10, 0] : 0, // Bounce animasyonu
+         
+        }}
+        transition={{
+          duration: 0.5, // Animasyon süresi
+          repeat: Infinity, // Sürekli tekrarlamasını sağlıyoruz
+          repeatDelay: 3.5, // 1.5 saniye bekledikten sonra animasyon tekrarlansın
+          ease: "easeInOut", // Easing fonksiyonu
+        }}
+      >
+ <IconButton
+          color="primary"
+          onClick={() => setCartOpen(true)}
+          sx={{
+            backgroundColor: "#1976d2", // Butonun arka plan rengi
+            color: "#fff", // Ikon rengi
+            borderRadius: "50%", // Yuvarlak buton
+            boxShadow: 3, // Hafif gölge efekti
+            padding: "12px", // İç boşluk
+            transition: "all 0.3s ease", // Yumuşak geçişler
+            "&:hover": {
+              backgroundColor: "#1565c0", // Hover durumunda arka plan rengi değişir
+              transform: "scale(1.1)", // Hoverda buton büyür
+              boxShadow: 6, // Hoverda gölge artar
+            },
+          }}
+        >
           <Badge
             badgeContent={cart.reduce((sum, item) => sum + item.quantity, 0)}
             color="secondary"
+            sx={{
+              fontSize: "1rem", // Badge yazı boyutu
+              fontWeight: "bold", // Badge yazı kalınlığı
+              top: 0, // Badge'i butona yakın konumlamak
+              right: 0,
+            }}
           >
             <ShoppingCartIcon fontSize="large" />
           </Badge>
         </IconButton>
-      </Box>
+      </motion.div>
+    </Box>
 
       {/* Kategori ve Arama */}
       <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={3}>
           <Paper elevation={3} sx={{ p: 2, borderRadius: 3 }}>
             <Typography
               variant="h6"
-              sx={{ fontWeight: "bold", color: "#1976d2" }}
+              sx={{
+                fontWeight: "bold",
+                color: "#1976d2",
+                fontSize: { xs: "1rem", sm: "1.25rem" },
+              }}
             >
               Kategoriler
             </Typography>
@@ -240,7 +296,12 @@ const ProductPage = () => {
           </Box>
         </Grid>
         {/* Sepet Modal */}
-        <Dialog open={cartOpen} onClose={() => setCartOpen(false)} maxWidth="md" fullWidth>
+        <Dialog
+          open={cartOpen}
+          onClose={() => setCartOpen(false)}
+          maxWidth="md"
+          fullWidth
+        >
           <DialogTitle
             sx={{
               fontWeight: "bold",
@@ -282,12 +343,23 @@ const ProductPage = () => {
                       </Typography>
                     </Box>
                   </Box>
-                  <IconButton
-                    color="error"
-                    onClick={() => removeFromCart(item.id)}
-                  >
-                    <Typography variant="body2">Sil</Typography>
-                  </IconButton>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      onClick={() => increaseFromCart(item.id)}
+                    >
+                      <AddIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">{item.quantity}</Typography>
+                    <IconButton
+                      color="secondary"
+                      size="small"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      <RemoveIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
                 </ListItem>
               ))}
             </List>
@@ -313,7 +385,7 @@ const ProductPage = () => {
               onClick={() => setCartOpen(false)}
               variant="outlined"
               color="primary"
-              sx={{ width: "100%", mt: 2, }}
+              sx={{ width: "100%", mt: 2 }}
             >
               Kapat
             </Button>
@@ -321,7 +393,7 @@ const ProductPage = () => {
               onClick={() => navigate("/Order")}
               variant="contained"
               color="primary"
-              sx={{ width: "100%", mt: 2, color:"#fff"}}
+              sx={{ width: "100%", mt: 2, color: "#fff" }}
             >
               Teklif Gönder
             </Button>

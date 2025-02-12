@@ -41,6 +41,7 @@ function BannerSwiper() {
         justifyContent: "center",
         overflow: "hidden",
         borderRadius: "16px", // Köşeleri yuvarlatır
+        bottom:"20px"
 
       }}
     >

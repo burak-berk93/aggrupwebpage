@@ -1,7 +1,10 @@
 import { Grid, Box, Typography, Button } from "@mui/material";
 import Banner_images from '../assets/images/ar-grup-banner.png';
+import { useNavigate } from "react-router-dom"; // React Router'dan useNavigate import edildi
 
 function Banner() {
+  const navigate = useNavigate(); // useNavigate hook'u kullanıldı
+
   return (
     <Grid container sx={{ height: "580px", paddingTop: "50px" }}>
       {/* Sol Kısım - Resim */}
@@ -62,6 +65,7 @@ function Banner() {
 
           <Button 
             variant="contained" 
+            onClick={() => navigate("/About")}
             color="primary" 
             size="large" 
             sx={{ 
