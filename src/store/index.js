@@ -45,10 +45,10 @@ const reducer = (state = initialState, action) => {
       };
     }
     case CLEAR_ITEM_QUANTITY: {
-      return {
-        ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload), // Ürünü tamamen sepetten çıkarıyoruz
-      };
+    return {
+    ...state,
+    cart: state.cart.filter((item) => item.id !== action.payload), // Ürünü tamamen sepetten çıkarıyoruz
+  };
     }
     case REMOVE_FROM_CART: {
       const itemToRemove = state.cart.find((item) => item.id === action.payload);
